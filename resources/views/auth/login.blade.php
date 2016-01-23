@@ -10,7 +10,7 @@
                     
                     @include('partials.errors')
 
-                    <form class="" role="form" method="POST" action="/auth/login">
+                    <form class="" role="form" method="POST" action="{{ route('login') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <fieldset class="form-group">

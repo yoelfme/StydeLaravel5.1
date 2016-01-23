@@ -9,7 +9,7 @@
 				<div class="card-block">
 					@include('partials.errors')
 
-					<form class="" role="form" method="POST" action="/auth/register">
+					<form class="" role="form" method="POST" action="{{ route('register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<fieldset class="form-group">
