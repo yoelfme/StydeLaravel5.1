@@ -104,6 +104,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'Name',
+        'email' => 'E-Mail',
+        'password' => 'Password',
+        'password_confirmation' => 'Confirm your password',
+    ],
 
 ];

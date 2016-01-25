@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card card-default">
-                <div class="card-header">Login</div>
+                <div class="card-header">@lang('auth.login_title')</div>
                 <div class="card-block">
                     
                     @include('partials.errors')
@@ -14,14 +14,14 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <fieldset class="form-group">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                            <label class="col-md-4 control-label">@lang('validation.attributes.email')</label>
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}">
                             </div>
                         </fieldset>
 
                         <fieldset class="form-group">
-                            <label class="col-md-4 control-label">Password</label>
+                            <label class="col-md-4 control-label">@lang('validation.attributes.password')</label>
                             <div class="col-md-6">
                                 <input type="password" class="form-control" name="password">
                             </div>
@@ -31,7 +31,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                                        <input type="checkbox" name="remember">@lang('auth.remember')
                                     </label>
                                 </div>
                             </div>
@@ -40,10 +40,10 @@
                         <fieldset class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
-                                    Login
+                                    @lang('auth.login_button')
                                 </button>
                                 <br>
-                                <a href="/password/email">Forgot Your Password?</a>
+                                <a href="/password/email">@lang('auth.forgot_link')</a>
                             </div>
                         </fieldset>
                     </form>
