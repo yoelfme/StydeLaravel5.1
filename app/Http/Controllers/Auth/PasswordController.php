@@ -39,4 +39,14 @@ class PasswordController extends Controller
     {
         return route('home');
     }
+
+    /**
+     * Get the e-mail subject line to be used for the reset link email.
+     *
+     * @return string
+     */
+    protected function getEmailSubject()
+    {
+        return trans('passwords.email_subject');
+    }
 }

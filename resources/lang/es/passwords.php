@@ -18,5 +18,5 @@ return [
     'sent'     => '¡Recordatorio de contraseña enviado!',
     'token'    => 'Este token de recuperación de contraseña es inválido.',
     'user'     => 'No podemos encontrar a un usuario con ese correo electrónico.',
-
+    'email_subject' => 'Recupera tu contraseña',
 ];
