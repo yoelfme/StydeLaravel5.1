@@ -1,6 +1,6 @@
 @if (count($errors) > 0)
     <div class="alert alert-danger">
-        <strong>Ooops!</strong>@lang('auth.erros_title')<br><br>
+        <strong>Ooops!</strong>@lang('auth.errors_title')<br><br>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
