@@ -14,9 +14,9 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <fieldset class="form-group">
-                            <label class="col-md-4 control-label">@lang('validation.attributes.email')</label>
+                            <label class="col-md-4 control-label">@lang('validation.attributes.username')</label>
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input type="text" class="form-control" name="username" value="{{ old('username') }}">
                             </div>
                         </fieldset>
 

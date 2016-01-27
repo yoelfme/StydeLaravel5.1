@@ -109,6 +109,7 @@ return [
         'email' => 'E-Mail',
         'password' => 'Password',
         'password_confirmation' => 'Confirm your password',
+        'username' => 'Username',
     ],
 
 ];
