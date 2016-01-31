@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('magic_words', 60);
             $table->enum('role', ['user', 'editor', 'admin']);
             $table->boolean('active')->default(true);
+            $table->string('registration_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

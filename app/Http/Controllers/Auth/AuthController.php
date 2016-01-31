@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -63,10 +64,17 @@ class AuthController extends Controller
         $user = new User([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'magic_words' => bcrypt($data['password']),
         ]);
         $user->role = 'user';
+        $user->registration_token = str_random(40);
         $user->save();
+
+        $url = route('confirmation', ['token' => $user->registration_token]);
+
+        Mail::send('emails/registration', compact('user', 'url'), function ($m) use ($user) {
+            $m->to($user->email, $user->name)->subject('Activa tu cuenta!');
+        });
 
         return $user;
     }
