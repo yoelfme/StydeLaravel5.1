@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
             'role' => 'admin',
             'username' => 'yoelfme',
             'email' => 'yoelfme@hotmail.com',
-            'magic_words' => bcrypt('secret'),
+            'password' => bcrypt('secret'),
             'active' => true
         ]);
         factory(App\User::class, 49)->create();

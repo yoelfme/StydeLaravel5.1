@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class AuthController extends Controller
 {
 
-    protected $username = 'username';
+    protected $username = 'email';
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ class AuthController extends Controller
         $user = new User([
             'name' => $data['name'],
             'email' => $data['email'],
-            'magic_words' => bcrypt($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
         $user->role = 'user';
         $user->registration_token = str_random(40);
@@ -99,6 +99,7 @@ class AuthController extends Controller
         return route('home');
     }
 
+
     /**
      * Get the needed authorization credentials from the request.
      *
@@ -108,9 +109,43 @@ class AuthController extends Controller
     protected function getCredentials(Request $request)
     {
         return [
-            'username' => $request->get('username'),
+            'email' => $request->get('email'),
             'password' => $request->get('password'),
-            'active' => true
+            'registration_token' => null
         ];
+    }
+
+    public function getConfirmation($token)
+    {
+        $user = User::where('registration_token', $token)->FirstOrFail();
+        $user->registration_token = null;
+        $user->save();
+
+        return redirect()->route('login')
+            ->with('alert', 'Email confirmado, ahora puedes iniciar sesion');
+    }
+
+        /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request,
+                $validator
+            );
+        }
+
+        $user = $this->create($request->all());
+
+        return redirect()->route('login')
+            ->with('alert', 'Por favor confirma tu email: ' . $user->email);
+        return redirect($this->redirectPath());
     }
 }

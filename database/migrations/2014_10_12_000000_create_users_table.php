@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->string('magic_words', 60);
+            $table->string('password', 60);
             $table->enum('role', ['user', 'editor', 'admin']);
             $table->boolean('active')->default(true);
             $table->string('registration_token')->nullable();

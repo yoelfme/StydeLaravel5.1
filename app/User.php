@@ -45,6 +45,6 @@ class User extends Model implements
      */
     public function getAuthPassword()
     {
-        return $this->magic_words;
+        return $this->password;
     }
 }

@@ -10,13 +10,17 @@
                     
                     @include('partials.errors')
 
+                    @if(Session::has('alert'))
+                        <p class="alert alert-success">{{ Session::get('alert') }}</p>
+                    @endif
+
                     <form class="" role="form" method="POST" action="{{ route('login') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <fieldset class="form-group">
-                            <label class="col-md-4 control-label">@lang('validation.attributes.username')</label>
+                            <label class="col-md-4 control-label">@lang('validation.attributes.email')</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="username" value="{{ old('username') }}">
+                                <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                             </div>
                         </fieldset>
 
