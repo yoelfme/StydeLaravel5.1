@@ -34,7 +34,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['getLogout', 'getConfirmation']]);
     }
 
     /**
@@ -110,7 +110,6 @@ class AuthController extends Controller
         return [
             'email' => $request->get('email'),
             'password' => $request->get('password'),
-            'registration_token' => null
         ];
     }
 
@@ -120,8 +119,8 @@ class AuthController extends Controller
         $user->registration_token = null;
         $user->save();
 
-        return redirect()->route('login')
-            ->with('alert', 'Email confirmado, ahora puedes iniciar sesion');
+        return redirect()->route('home')
+            ->with('alert', 'Tu email ya fue confirmado');
     }
 
         /**
