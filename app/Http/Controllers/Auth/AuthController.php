@@ -14,6 +14,9 @@ class AuthController extends Controller
 
     protected $username = 'email';
 
+    protected $maxLoginAttempts = 2;
+    protected $lockoutTime = 300;
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -145,5 +148,20 @@ class AuthController extends Controller
         return redirect()->route('login')
             ->with('alert', 'Por favor confirma tu email: ' . $user->email);
         return redirect($this->redirectPath());
+    }
+
+    /**
+     * Get the login lockout error message.
+     *
+     * @param  int  $seconds
+     * @return string
+     */
+    protected function getLockoutErrorMessage($seconds)
+    {
+        $minutes = round($seconds / 60);
+
+        return \Lang::has('auth.throttle')
+            ? \Lang::get('auth.throttle', ['minutes' => $minutes])
+            : 'Too many login attempts. Please try again in '.$minutes.' minutes.';
     }
 }
