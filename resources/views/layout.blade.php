@@ -16,8 +16,14 @@
         </button>
         <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
             <a class="navbar-brand" href="#">Home</a>
+            <ul class="nav navbar-nav">
+                @if (Auth::check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('account') }}">Account</a>
+                    </li>
+                @endif
+            </ul>
             <ul class="nav navbar-nav pull-xs-right">
-                <a href="{{ url('account') }}">Account</a>
                 @if (Auth::guest())
                     <li class="nav-item"><a class="nav-link" href="{{ route('login' )}}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>

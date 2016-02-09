@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -7,6 +6,9 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class MenuTest extends TestCase
 {
     
+    use DatabaseMigrations;
+    use DatabaseTransactions;
+
     public function testAccountLink()
     {
 
@@ -17,7 +19,7 @@ class MenuTest extends TestCase
         // Create a user
         $user = factory(App\User::class)->create([
             'name' => 'Yoel',
-            'email' => 'yoelfme@hotmail.com',
+            'email' => 'yoel@gmail.com',
             'role' => 'admin',
             'password' => bcrypt('admin')
         ]);
@@ -25,6 +27,10 @@ class MenuTest extends TestCase
         $this->actingAs($user)
             ->visit('/')
             ->see('Account');
+
+        $this->click('Account')
+            ->seePageIs('account')
+            ->see('My account');
 
     }
 }
