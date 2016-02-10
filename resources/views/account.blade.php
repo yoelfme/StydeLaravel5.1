@@ -7,9 +7,12 @@
             <div class="card card-default">
                 <div class="card-header">My Account</div>
                 <div class="card-block">
+
+                    @include('partials/success')
+
                     <ul>
                         <li><a href="">Edit Profile</a></li>
-                        <li><a href="">Change password</a></li>
+                        <li><a href="{{ url('account/password') }}">Change Password</a></li>
                     </ul>
                 </div>
             </div>
