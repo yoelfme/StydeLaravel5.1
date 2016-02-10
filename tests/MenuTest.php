@@ -16,13 +16,7 @@ class MenuTest extends TestCase
         $this->visit('/')
             ->dontSee('Account');
 
-        // Create a user
-        $user = factory(App\User::class)->create([
-            'name' => 'Yoel',
-            'email' => 'yoel@gmail.com',
-            'role' => 'admin',
-            'password' => bcrypt('admin')
-        ]);
+        $user = $this->createUser();
 
         $this->actingAs($user)
             ->visit('/')
