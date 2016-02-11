@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class MenuTest extends TestCase
 {
     
-    use DatabaseMigrations;
     use DatabaseTransactions;
 
     public function testAccountLink()
