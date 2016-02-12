@@ -7,3 +7,5 @@ Homestead.json
 .DS_Store
 
 storage/database.sqlite
+
+.idea
