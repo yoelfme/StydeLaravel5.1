@@ -37,9 +37,10 @@ class AccountController extends Controller
             ->with('alert', 'Your password has been changed');
     }
 
-    public function editProfile()
+    public function editProfile(Request $request)
     {
-        return view('account.edit-profile');
+        $user = $request->user();
+        return view('account.edit-profile', compact('user'));
     }
 
     public function updateProfile(Request $request)

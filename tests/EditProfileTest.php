@@ -18,6 +18,7 @@ class EditProfileTest extends TestCase
             ->visit('account')
             ->click('Edit Profile')
             ->seePageIs('account/edit-profile')
+            ->seeInField('name', 'Yoel')
             ->type($name, 'name')
             ->press('Update Profile')
             ->seePageIs('account')
