@@ -7,24 +7,19 @@ use Closure;
 class Role
 {
 
-    protected $hierarchy = [
-        'admin' => 3,
-        'editor' => 2,
-        'user' => 1
-    ];
-
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param string $role
      * @return mixed
      */
     public function handle($request, Closure $next, $role)
     {
         $user = auth()->user();
 
-        if ($this->hierarchy[$user->role] < $this->hierarchy[$role]) {
+        if (! AccessHandler::check($user->role, $role)) {
             abort(404);
         }
 

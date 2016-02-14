@@ -22,6 +22,12 @@
                         <a class="nav-link" href="{{ url('account') }}">Account</a>
                     </li>
                 @endif
+
+                    @if (Auth::check() && \App\AccessHandler::check(Auth::user()->role, 'editor'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('publish') }}">Publish</a>
+                        </li>
+                    @endif
             </ul>
             <ul class="nav navbar-nav pull-xs-right">
                 @if (Auth::guest())
